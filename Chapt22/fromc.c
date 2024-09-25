@@ -17,15 +17,15 @@ int main()
     long int len;
     double sum;
 
-    // calls asam
-    scanf("%d", &side1);
-    scanf("%d", &side2);
+    // // calls asam
+    // scanf("%d", &side1);
+    // scanf("%d", &side2);
 
-    rArea = rarea(side1, side2);
-    rCirc = rcircum(side1, side2);
+    // rArea = rarea(side1, side2);
+    // rCirc = rcircum(side1, side2);
 
-    printf("Area: %d\n", rArea);
-    printf("Rect circum: %d\n\n", rCirc);
+    // printf("Area: %d\n", rArea);
+    // printf("Rect circum: %d\n\n", rCirc);
 
     printf("Radius of circle: ");
     scanf("%lf", &radius);
@@ -40,22 +40,22 @@ int main()
     sreverse(rstring, strlen(rstring));
 
     printf("Reversed: %s\n\n", rstring);
-    len = sizeof(array)/sizeof(double);
-    printf("Array elements:\n");
-    for (int i = 0; i< len; i++)
-    {
-        printf("%d : %lf\n", i, array[i]);
-    }
-    sum = asum(array, len);
-    printf("Sum: %lf\n", sum);
-    adouble(array, len);
+    // len = sizeof(array)/sizeof(double);
+    // printf("Array elements:\n");
+    // for (int i = 0; i< len; i++)
+    // {
+    //     printf("%d : %lf\n", i, array[i]);
+    // }
+    // sum = asum(array, len);
+    // printf("Sum: %lf\n", sum);
+    // adouble(array, len);
 
-    for (int i = 0; i< len; i++)
-    {
-        printf("%d : %lf\n", i, array[i]);
-    }
+    // for (int i = 0; i< len; i++)
+    // {
+    //     printf("%d : %lf\n", i, array[i]);
+    // }
 
-    sum = asum(array, len);
-    printf("Sum: %lf\n", sum);
+    // sum = asum(array, len);
+    // printf("Sum: %lf\n", sum);
     return 0;
 }

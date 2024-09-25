@@ -1,5 +1,5 @@
 fromc: fromc.c rect.o circ.o sreverse.o asum.o adouble.o
-	gcc	-o fromc fromc.c rect.o circ.o sreverse.o asum.o -no-pie
+	gcc	-o fromc fromc.c rect.o circ.o sreverse.o asum.o adouble.o -no-pie
 rect.o: rect.asm
 	nasm -f elf64 -g -F dwarf rect.asm -l rect.lst
 circ.o: circ.asm

@@ -6,14 +6,15 @@ section .text
 
 global carea
 carea:
-    push    rbp
-    mov     rbp, rsp
+    section .text
+        push    rbp
+        mov     rbp, rsp
 
-    movsd   xmm1, qword [pi]
-    mulsd   xmm0, xmm0
-    mulsd   xmm0, xmm1
-    leave   
-    ret
+        movsd   xmm1, qword [pi]
+        mulsd   xmm0, xmm0
+        mulsd   xmm0, xmm1
+        leave       
+        ret
 
 global  ccircum
 ccircum:
