@@ -3,8 +3,7 @@ section .data
     pi  dq  3.141592654
 section .bss
 section .text
-
-global carea
+global carea            
 carea:
     section .text
         push    rbp

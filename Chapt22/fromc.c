@@ -31,9 +31,9 @@ int main()
     scanf("%lf", &radius);
 
     cArea = carea(radius);
-    cCirc = carea(radius);
-    printf("Area: %lf\n");
-    printf("Circle circum: %lf\n\n");
+    cCirc = ccircum(radius);
+    printf("Area: %lf\n", cArea);
+    printf("Circle circum: %lf\n\n", cCirc);
 
     // asam with string argument
     scanf("%s", rstring);
