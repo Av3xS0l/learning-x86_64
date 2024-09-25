@@ -1,0 +1,17 @@
+     1                                  extern printb
+     2                                  section .data
+     3 00000000 0C00000000000000            skaitlis    dq  12
+     4                                  section .bss
+     5                                  section .text
+     6                                      global main
+     7                                  main:
+     8 00000000 55                          push    rbp
+     9 00000001 4889E5                      mov     rbp, rsp 
+    10                                      
+    11                                  
+    12 00000004 488B3C25[00000000]          mov     rdi, [skaitlis]
+    13 0000000C E8(00000000)                call    printb
+    14                                  
+    15 00000011 C9                          leave
+    16 00000012 C3                          ret
+    17                                  

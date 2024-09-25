@@ -1,0 +1,25 @@
+{
+  "name": "lang",
+  "displayName": ".asm",
+  "description": "x86_64 NASM Assembly",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.93.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [{
+      "id": "x86_64asm",
+      "aliases": ["x86_64 NASM Assembly", "x86_64asm"],
+      "extensions": [".asm"],
+      "configuration": "./language-configuration.json"
+    }],
+    "grammars": [{
+      "language": "x86_64asm",
+      "scopeName": "source.asm",
+      "path": "./syntaxes/x86_64asm.tmLanguage.json"
+    }]
+  }
+}

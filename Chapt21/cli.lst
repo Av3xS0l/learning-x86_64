@@ -1,0 +1,33 @@
+     1                                  ; cli.asm
+     2                                  extern printf
+     3                                  section .data
+     4 00000000 417267756D656E7473-         msg     db  "Arguments are: ",10,0
+     4 00000009 206172653A200A00   
+     5 00000011 25730A00                    fmt     db  "%s",10,0
+     6                                  section .bss
+     7                                  section .text
+     8                                      global main
+     9                                  main:
+    10 00000000 55                          push    rbp
+    11 00000001 4889E5                      mov     rbp, rsp
+    12                                  
+    13 00000004 4989FC                      mov     r12, rdi    ; number of arguments
+    14 00000007 4989F5                      mov     r13, rsi    ; adress of argument array
+    15                                      
+    16 0000000A 48BF-                       mov     rdi, msg
+    16 0000000C [0000000000000000] 
+    17 00000014 E8(00000000)                call    printf
+    18                                  
+    19 00000019 4D31F6                      xor     r14, r14
+    20                                  
+    21                                      .ploop:
+    22 0000001C 48BF-                           mov     rdi, fmt
+    22 0000001E [1100000000000000] 
+    23 00000026 4B8B74F500                      mov     rsi, qword [r13+r14*8]  ; loop bytes
+    24 0000002B E8(00000000)                    call    printf
+    25 00000030 49FFC6                          inc     r14
+    26 00000033 4D39E6                          cmp     r14, r12
+    27 00000036 7CE4                            jl      .ploop
+    28                                  
+    29 00000038 C9                          leave
+    30 00000039 C3                          ret

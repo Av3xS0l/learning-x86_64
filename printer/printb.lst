@@ -1,0 +1,90 @@
+     1                                  section .data
+     2 00000000 3100                        one     db  "1", 0
+     3 00000002 3000                        zero    db  "0", 0
+     4 00000004 2000                        empt    db  " ", 0
+     5 00000006 0A00                        ext     db  10, 0
+     6                                  
+     7                                  section .text
+     8                                  global printb
+     9                                  printb:
+    10 00000000 55                          push    rbp
+    11 00000001 4889E5                      mov     rbp, rsp
+    12 00000004 B93F000000                  mov     rcx, 63          ; Initialize loop counter
+    13                                  
+    14                                  prntloop:
+    15 00000009 4889FE                      mov     rsi, rdi
+    16 0000000C 48D3EE                      shr     rsi, cl          ; Shift rsi right by cl bits
+    17 0000000F 4883E601                    and     rsi, 1           ; Isolate the least significant bit
+    18 00000013 51                          push    rcx              ; Save rcx
+    19                                  
+    20                                      ; Check if we need to print a space
+    21 00000014 80F937                      cmp     cl, 55
+    22 00000017 7420                        je      printempt
+    23 00000019 80F92F                      cmp     cl, 47
+    24 0000001C 741B                        je      printempt
+    25 0000001E 80F927                      cmp     cl, 39
+    26 00000021 7416                        je      printempt
+    27 00000023 80F91F                      cmp     cl, 31
+    28 00000026 7411                        je      printempt
+    29 00000028 80F917                      cmp     cl, 23
+    30 0000002B 740C                        je      printempt
+    31 0000002D 80F90F                      cmp     cl, 15
+    32 00000030 7407                        je      printempt
+    33 00000032 80F907                      cmp     cl, 7
+    34 00000035 7402                        je      printempt
+    35 00000037 EB1D                        jmp     skipempt
+    36                                  
+    37                                  printempt:
+    38                                      ; Print " "
+    39 00000039 57                          push    rdi
+    40 0000003A B801000000                  mov     rax, 1
+    41 0000003F BF01000000                  mov     rdi, 1
+    42 00000044 48BE-                       mov     rsi, empt
+    42 00000046 [0400000000000000] 
+    43 0000004E BA01000000                  mov     rdx, 1
+    44 00000053 0F05                        syscall
+    45 00000055 5F                          pop     rdi
+    46                                  
+    47                                  skipempt:
+    48                                      ; Print 1 or 0 based on the value of the bit
+    49 00000056 48F7C601000000              test    rsi, 1
+    50 0000005D 741F                        jz      prntnull
+    51                                  
+    52                                      ; Print 1
+    53 0000005F 57                          push    rdi
+    54 00000060 B801000000                  mov     rax, 1
+    55 00000065 BF01000000                  mov     rdi, 1
+    56 0000006A 48BE-                       mov     rsi, one
+    56 0000006C [0000000000000000] 
+    57 00000074 BA01000000                  mov     rdx, 1
+    58 00000079 0F05                        syscall
+    59 0000007B 5F                          pop     rdi
+    60 0000007C EB1D                        jmp     continue
+    61                                  
+    62                                  prntnull:
+    63                                      ; Print 0
+    64 0000007E 57                          push    rdi
+    65 0000007F B801000000                  mov     rax, 1
+    66 00000084 BF01000000                  mov     rdi, 1
+    67 00000089 48BE-                       mov     rsi, zero
+    67 0000008B [0200000000000000] 
+    68 00000093 BA01000000                  mov     rdx, 1
+    69 00000098 0F05                        syscall
+    70 0000009A 5F                          pop     rdi
+    71                                  
+    72                                  continue:
+    73 0000009B 59                          pop     rcx              ; Restore rcx
+    74 0000009C 48FFC9                      dec     rcx               ; Decrement cl
+    75 0000009F 4883F900                    cmp     rcx, 0
+    76 000000A3 0F8D60FFFFFF                jge     prntloop
+    77                                  
+    78                                      ; Print newline
+    79 000000A9 B801000000                  mov     rax, 1
+    80 000000AE BF01000000                  mov     rdi, 1
+    81 000000B3 48BE-                       mov     rsi, ext
+    81 000000B5 [0600000000000000] 
+    82 000000BD BA01000000                  mov     rdx, 1
+    83 000000C2 0F05                        syscall
+    84                                  
+    85 000000C4 C9                          leave
+    86 000000C5 C3                          ret
